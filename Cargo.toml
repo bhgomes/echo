@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.65"
-clap = { version = "4.0.4", features = ["derive"] }
-dialoguer = "0.10.2"
+anyhow = { version = "1.0.65" }
+clap = { version = "4.0.6", features = ["derive"] }
+dialoguer = { version = "0.10.2" }
 num_cpus = { version = "1.13.1" }
 reqwest = { version = "0.11.12", features = ["json"] }
 serde = { version = "1.0.145", features = ["derive"] }
