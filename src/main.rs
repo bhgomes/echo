@@ -54,6 +54,7 @@ async fn echo(_: (), request: String) -> Result<String> {
 
 async fn server(url: Url) -> Result<()> {
     let mut app = tide::Server::with_state(());
+    app.at("/").get(|_| async { Ok("Echo Server") });
     tide::register_post(&mut app, "/echo", echo);
     Ok(app.listen(url).await?)
 }
