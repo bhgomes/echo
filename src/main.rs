@@ -1,6 +1,6 @@
 use anyhow::Result;
 use clap::{Parser, Subcommand};
-use dialoguer::{theme::ColorfulTheme, Input};
+use dialoguer::{theme::SimpleTheme, Input};
 use echo::reqwest::{KnownUrlClient, Url};
 use echo::tide;
 
@@ -38,8 +38,8 @@ impl Arguments {
 async fn client(url: Url) -> Result<()> {
     let client = KnownUrlClient::new(url)?;
     loop {
-        let input: String = Input::with_theme(&ColorfulTheme::default())
-            .with_prompt(">")
+        let input: String = Input::with_theme(&SimpleTheme)
+            .with_prompt("")
             .interact_text()
             .unwrap();
         let response: String = client.post("echo", &input).await?;
@@ -48,6 +48,7 @@ async fn client(url: Url) -> Result<()> {
 }
 
 async fn echo(_: (), request: String) -> Result<String> {
+    println!("INFO: message received {}", request);
     Ok(request)
 }
 
